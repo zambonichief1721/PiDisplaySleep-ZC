@@ -32,5 +32,6 @@ while True:
                 state=1
 
     system('xset -display :0 dpms force off')
-
+    state=0
+    
     sleep(10) #Scan rate in seconds
