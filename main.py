@@ -11,12 +11,12 @@ while True:
     current_time = datetime.datetime.now()
     hour = current_time.hour
 
-    while hour <= 22 or hour >= 6:
+    while hour <= 21 or hour >= 6:
 
         nmap_out=str(popen('nmap -sP '+ip_1).read()) #nmap command to scan on the given IP address
         nmap_out_2=str(popen('nmap -sP '+ip_2).read())
         sleep(4)
-    
+
         if nmap_out.find('latency') == -1 and nmap_out_2.find('latency') == -1:  #looks for the word "latency" in the output
             if state==0 :                   #this nested if makes sure that commands are not repeated
                 pass
@@ -33,5 +33,5 @@ while True:
 
     system('xset -display :0 dpms force off')
     state=0
-    
+
     sleep(10) #Scan rate in seconds
