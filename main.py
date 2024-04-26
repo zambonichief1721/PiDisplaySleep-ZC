@@ -59,9 +59,9 @@ def main():
         time_state = check_time()
         home_state = check_phone_home()
         if home_state==0 or time_state==0:
-            print('xset -display :0 dpms force off')
+            system('xset -display :0 dpms force off')
         elif home_state==1 and time_state==1:
-            print('xset -display :0 dpms force on')
+            system('xset -display :0 dpms force on')
         sleep(10) #Scan rate in seconds
 
 if __name__ == "__main__":
