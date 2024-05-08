@@ -40,6 +40,7 @@ def check_time():
     global time_state
     current_time = datetime.datetime.now()
     hour = current_time.hour
+    print(current_time)
 
     if hour>=6 and hour<=22:  #looks for the word "latency" in the output
         if time_state==1:                   #this nested if makes sure that commands are not repeated
