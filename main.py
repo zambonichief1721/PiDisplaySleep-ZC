@@ -24,20 +24,23 @@ def check_phone_home():
         else :
             #system('xset -display :0 dpms force off')  #Bash command that turns off the display
             home_state=0                             #Updating the display state variable
-
+        print('nobody\'s home')
     elif nmap_out.find('latency') > 1 or nmap_out_2.find('latency') > 1:
         if home_state==1:
             pass
         else :
             #system('xset -display :0 dpms force on') #Bash command to turn on the display
             home_state=1
+        print('someone\'s home')
+
+    print(home_state)
     return home_state
 
 def check_time():
     global time_state
     current_time = datetime.datetime.now()
     hour = current_time.hour
-    
+
     if hour>=6 and hour<=22:  #looks for the word "latency" in the output
         if time_state==1:                   #this nested if makes sure that commands are not repeated
             pass
@@ -51,6 +54,7 @@ def check_time():
         else :
             #system('xset -display :0 dpms force on') #Bash command to turn on the display
             time_state=0
+    print(time_state)
     return time_state
 
 def main():
@@ -59,6 +63,8 @@ def main():
         time_state = check_time()
         home_state = check_phone_home()
         if home_state==0 or time_state==0:
+            time = datetime.datetime.now()
+            print(time)
             system('xset -display :0 dpms force off')
         elif home_state==1 and time_state==1:
             system('xset -display :0 dpms force on')
